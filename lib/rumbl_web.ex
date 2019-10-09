@@ -23,7 +23,7 @@ defmodule RumblWeb do
 
       import Plug.Conn
       import RumblWeb.Gettext
-      import RumblWeb.Auth, :only [authenticate_user: 2]
+      import RumblWeb.Auth, only: [authenticate_user: 2]
       alias RumblWeb.Router.Helpers, as: Routes
     end
   end
@@ -51,7 +51,7 @@ defmodule RumblWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
-      import RumblWeb.Auth, :only [authenticate_user: 2]
+      import RumblWeb.Auth, only: [authenticate_user: 2]
     end
   end
 
