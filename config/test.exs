@@ -15,4 +15,6 @@ config :rumbl, Rumbl.Repo,
   password: "postgres",
   database: "rumbl_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  port: 5434
+
