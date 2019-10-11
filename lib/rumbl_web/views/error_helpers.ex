@@ -41,4 +41,33 @@ defmodule RumblWeb.ErrorHelpers do
       Gettext.dgettext(RumblWeb.Gettext, "errors", msg, opts)
     end
   end
+
+  def get_first_error_message(changeset) do
+    List.first(changeset.errors)
+    |> elem(1)
+    |> elem(0)
+    # |> String.split()
+    |> IO.inspect(label: "error message")
+    
+    # IO.puts("THIS IS INTERPOLATED TYPE")
+  end
+
+  # def get_first_error_message(changeset) do 
+
+  #  List.first(changeset.errors)
+  #  |> elem(1)
+  #  |> elem(1)
+  # #  |> IO.inspect(label: "final message")
+  # #  |> Enum.find(fn i -> String.starts_with?(i, __MODULE__.get_interpolated_type(changeset)) end)
+  #  |> Enum.find(fn i -> 
+  #  j = "#i"
+  #  String.starts
+    
+  #  end
+  #   )
+  #  |> IO.inspect(label: "final thing") 
+   
+ 
+
+  # end
 end

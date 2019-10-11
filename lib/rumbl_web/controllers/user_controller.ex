@@ -3,6 +3,7 @@ defmodule RumblWeb.UserController do
 
    alias Rumbl.Accounts
    alias Rumbl.Accounts.User
+   alias RumblWeb.ErrorHelpers
 
    plug :authenticate_user when action in [:index, :show]
 
@@ -22,7 +23,7 @@ defmodule RumblWeb.UserController do
    end
 
    def create(conn, %{"user" => user_params}) do
-      case Accounts.create_user(user_params) do
+      case Accounts.register_user(user_params) do
          {:ok, user} ->
             conn
             |> RumblWeb.Auth.login(user)
@@ -30,7 +31,19 @@ defmodule RumblWeb.UserController do
             |> redirect(to: Routes.user_path(conn, :index))
          
          {:error, %Ecto.Changeset{} = changeset} ->
-            render(conn, "new.html", changeset: changeset)
+
+            case  ErrorHelpers.get_first_error_message(changeset) do
+               "should be at least %{count} character(s)" ->
+               conn
+               |> put_flash(:info, "should be at least 6 character(s)")
+               |> redirect(to: Routes.user_path(conn, :new))
+            end
+
+            # IO.inspect(ErrorHelpers.get_first_error_message(changeset))
+            
+            # IO.inspect(conn)
+            # |> put_flash(:info, "#{ErrorHelpers.get_first_error_message(changeset)}")
+            # |> redirect(to: Routes.user_path(conn, :new))
       end
    end
 

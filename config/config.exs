@@ -15,7 +15,9 @@ config :rumbl, RumblWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "fHHYc0lRA2fzDzB/OuH9gnXprAxsQ4uWb017Dm/yL+5AsFt3pgbBavdP/pNQkXfq",
   render_errors: [view: RumblWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Rumbl.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Rumbl.PubSub, adapter: Phoenix.PubSub.PG2],
+  reloadable_compilers: [:gettext, :phoenix],
+  reloadable_apps: [:rumbl]
 
 # Configures Elixir's Logger
 config :logger, :console,

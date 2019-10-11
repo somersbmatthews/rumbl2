@@ -49,6 +49,9 @@ config :rumbl, RumblWeb.Endpoint,
 config :rumbl, RumblWeb.Endpoint,
   live_reload: [
     patterns: [
+      ~r{lib/rumbl_web/controllers/.*(ex)$},
+      ~r{lib/rumbl_web/channels/.*(ex)$},
+      ~r{lib/rumbl/*/.*(ex)$},
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/rumbl_web/views/.*(ex)$},
@@ -70,6 +73,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :rumbl, Rumbl.Repo,
   username: "postgres",
   password: "postgres",
-  database: "rumbl_dev2",
+  database: "rumbl_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  port: 5434
