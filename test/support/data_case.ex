@@ -22,6 +22,7 @@ defmodule Rumbl.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Rumbl.DataCase
+      import Rumbl.TestHelpers
     end
   end
 
@@ -45,9 +46,12 @@ defmodule Rumbl.DataCase do
   """
   def errors_on(changeset) do
     Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
-      Enum.reduce(opts, message, fn {key, value}, acc ->
-        String.replace(acc, "%{#{key}}", to_string(value))
+      Regex.replace(~r"%{(\w+)}", message, fn _, key ->
+        opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
       end)
+      # Enum.reduce(opts, message, fn {key, value}, acc ->
+      #   String.replace(acc, "%{#{key}}", to_string(value))
+      # end)
     end)
   end
 end
