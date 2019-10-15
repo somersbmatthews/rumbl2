@@ -1,7 +1,8 @@
-# defmodule Rumbl.MultimediaTest do
-#   use Rumbl.DataCase
+defmodule Rumbl.MultimediaTest do
+  use Rumbl.DataCase, async: true
 
-#   alias Rumbl.Multimedia
+  alias Rumbl.Multimedia
+  alias Rumbl.Multimedia.Category
 
 #   describe "videos" do
 #     alias Rumbl.Multimedia.Video
@@ -65,4 +66,4 @@
 #       assert %Ecto.Changeset{} = Multimedia.change_video(video)
 #     end
 #   end
-# end
+end
