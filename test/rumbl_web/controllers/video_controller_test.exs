@@ -34,16 +34,10 @@ defmodule RumblWeb.VideoControllerTest do
   end
 
   describe "with a logged-in user" do
-    setup %{conn: conn, login_as: username} do
-      IO.puts("THIS CODE IS ALSO EXECUTING")
-      user = user_fixture(username: username)
-      conn = assign(conn, :current_user, user)
-      
-      {:ok, conn: conn, user: user}
-    end
 
     @tag login_as: "max"
     test "lists all user's videos on index", %{conn: conn, user: user} do
+      IO.puts("THIS IS SECOND USER TEST CODE")
       user_video = video_fixture(user, title: "funny cats")
       other_video = video_fixture(user_fixture(username: "other"),
         title: "another video")
