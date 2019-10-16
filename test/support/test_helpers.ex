@@ -12,10 +12,11 @@ defmodule Rumbl.TestHelpers do
             username: "user#{System.unique_integer([:positive])}",
             password: attrs[:password] || "supersecret"
          })
+         |> IO.inspect(label: "WHAT IS BEING PASSED TO REGISTER_USER()")
          |> Accounts.register_user()
 
-      IO.inspect(user, label: "THIS IS USER FROM user_fixture/2")      
-      user
+      # IO.inspect(user, label: "THIS IS USER FROM user_fixture/2")     
+      user 
    end
 
    def video_fixture(%Accounts.User{} = user, attrs \\ %{}) do
