@@ -2,7 +2,7 @@
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
 import css from "../css/app.css"
-import "./video.css";
+import "../css/video.css";
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -11,6 +11,7 @@ import "./video.css";
 // Import dependencies
 //
 import "phoenix_html"
+import socket from "./socket"
 
 // Import local files
 //
@@ -18,6 +19,9 @@ import "phoenix_html"
 // import socket from "./socket"
 
 import Player from "./player"
+import Video from "./video"
+
+Video.init(socket, document.getElementById("video"))
 
 let video = document.getElementById("video")
 
